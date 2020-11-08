@@ -1,0 +1,25 @@
+<!-- <div class="form-group">
+    <label for="file">Choose File: &nbsp;</label> 
+    <input type="file"
+           id="file"
+           (change)="handleFileInput($event.target.files)">
+</div> -->
+
+<label class="btn btn-default">
+    <input type="file" (change)="selectFile($event)">
+</label>
+   
+<button class="btn btn-success" [disabled]="!selectedFiles || showError" (click)="upload()">Upload</button>
+<button class="btn btn-primary" (click)=viewFiles()>View Files</button>
+<br>
+<span *ngIf="showError" style="color: red;font-size: 12px;">{{ errorText }}</span>
+<span *ngIf="uploadDocuemtFailed" style="color: red;font-size: 12px;">{{ uploadDocumentMessage }}</span>
+<span *ngIf="!uploadDocuemtFailed" style="color: green;font-size: 12px;">{{ uploadDocumentMessage }}</span>
+
+<ul style="list-style-type: none;">
+    <li *ngFor ="let file of files">
+        <img [src]= "file.url">
+    </li>
+</ul>
+
+<!-- {{fileNamesList}} -->
